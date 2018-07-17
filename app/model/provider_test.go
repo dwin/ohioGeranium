@@ -5,10 +5,6 @@ import (
 	"testing"
 )
 
-func init() {
-	createTables()
-}
-
 func TestCreateProviders(t *testing.T) {
 	var testProviders NppesResponse
 	err := json.Unmarshal(testData, &testProviders)

@@ -5,11 +5,15 @@ import (
 	"time"
 )
 
+// NppesResponse is the typical API response from
+// NPPES endpoint for valid query
 type NppesResponse struct {
 	ResultCount int              `json:"result_count"`
 	Results     []ProviderResult `json:"results"`
 }
 
+// ProviderResult contains all provider details as returned
+// from NPPES endpoint and database
 type ProviderResult struct {
 	Number    int `json:"number"`
 	Addresses []struct {
@@ -59,6 +63,7 @@ type ProviderResult struct {
 	} `json:"taxonomies"`
 }
 
+// ProviderRecord is model for providers table
 type ProviderRecord struct {
 	ProviderNumber int
 	Result         json.RawMessage
@@ -67,8 +72,8 @@ type ProviderRecord struct {
 	DeletedAt      time.Time
 }
 
-type ResultMap map[string]interface{}
-
+// CreateProviders persists NppesResponse to db
+// in form of ProviderRecord as rows
 func CreateProviders(resp NppesResponse) error {
 	// Handle as transaction
 	tx, err := db.Begin()

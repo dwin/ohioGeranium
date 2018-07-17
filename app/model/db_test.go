@@ -13,7 +13,3 @@ func TestOpenDB(t *testing.T) {
 	}
 
 }
-
-func TestCreateTable(t *testing.T) {
-	createTables()
-}
