@@ -1,0 +1,20 @@
+version: '3.2'
+
+services:
+  db:
+    image: postgres:alpine
+    environment:
+      POSTGRES_PASSWORD: IpcUUrehVEE4MOJNpLKU
+    ports:
+      - "127.0.0.1:5432:5432"
+
+  app:
+    image: dwin/ohiogeranium
+    ports:
+      - "127.0.0.1:1313:1313"
+    environment:
+      - "LOGDIR=/log"
+    volumes:
+      - ./ohioGeranium:/log
+    links:
+      - db:postgres
