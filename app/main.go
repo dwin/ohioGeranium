@@ -36,7 +36,7 @@ func main() {
 	log.Fatal(http.ListenAndServe(":1313", chain))
 }
 
-// logRequest middlware fucntion writes all incoming requests to request log
+// logRequest middlware function writes all incoming requests to request log
 func logRequest(handler http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		ip, _, err := net.SplitHostPort(r.RemoteAddr)

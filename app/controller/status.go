@@ -10,6 +10,7 @@ type statusResponse struct {
 	Status string
 }
 
+// Status returns OK if application is working
 func Status(w http.ResponseWriter, r *http.Request) {
 	// A very simple health check.
 	w.Header().Set("Content-Type", "application/json")

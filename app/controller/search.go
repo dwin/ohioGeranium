@@ -18,6 +18,8 @@ type searchResponse struct {
 	Message     string              `json:"message"`
 }
 
+// NewSearch takes model.SearchFields as json and returns searchResponse as JSON
+// from nppesEndpoint using request json input as parameters
 func NewSearch(w http.ResponseWriter, r *http.Request) {
 	// Process and validate request
 	var reqSearch model.SearchFields
@@ -41,6 +43,11 @@ func NewSearch(w http.ResponseWriter, r *http.Request) {
 	// Create request to NPPES API endpoint
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", nppesEndpoint+reqQueries, nil)
+	if err != nil {
+		log.Printf("Unable to create new request to NPPES Endpoint error: %s", err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
 
 	// Fetch Request
 	resp, err := client.Do(req)
