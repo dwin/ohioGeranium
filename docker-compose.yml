@@ -18,3 +18,5 @@ services:
       - ./ohioGeranium:/log
     links:
       - db:postgres
+    depends_on:
+      - db

@@ -2,7 +2,6 @@ package model
 
 import (
 	"log"
-	"time"
 
 	"github.com/jackc/pgx"
 	_ "github.com/lib/pq" // postgres driver
@@ -23,8 +22,8 @@ func openDB() *pgx.ConnPool {
 	if err != nil {
 		log.Fatalf("Unable to open postgres connection error: %s", err)
 	}
-	// Wait then Create Tables
-	time.Sleep(time.Second * 5)
+
+	// Create Tables
 	createTables(db)
 
 	return db
